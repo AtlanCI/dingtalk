@@ -60,6 +60,13 @@ func NewTextMsg(content string, opts ...atOption) *textMsg {
 	for _, opt := range opts {
 		opt.apply(&msg.At)
 	}
+	if len(msg.At.AtUserIds) > 0 {
+		var atStr = " "
+		for _, id := range msg.At.AtUserIds {
+			atStr = atStr + " @" + id
+		}
+		msg.Text.Content = msg.Text.Content + atStr
+	}
 	return msg
 }
 
