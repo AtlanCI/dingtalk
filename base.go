@@ -13,7 +13,7 @@ const (
 type DingTalk struct {
 	robotToken []string
 	secret     string
-	keyWord        string
+	keyWord    string
 }
 
 type textModel struct {
@@ -23,6 +23,7 @@ type textModel struct {
 type atModel struct {
 	AtMobiles []string `json:"atMobiles,omitempty"`
 	IsAtAll   bool     `json:"isAtAll,omitempty"`
+	AtUserIds []string `json:"atUserIds,omitempty"`
 }
 
 type linkModel struct {
