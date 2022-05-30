@@ -14,8 +14,8 @@ var (
 )
 
 const (
-	defaultDialTimeout             = 2 * time.Second
-	defaultKeepAlive               = 2 * time.Second
+	defaultDialTimeout = 5 * time.Second
+	defaultKeepAlive   = 2 * time.Second
 )
 
 func init() {
@@ -36,8 +36,6 @@ func initDefaultHTTPClient() *http.Client {
 	}
 	return client
 }
-
-
 
 func doRequest(ctx context.Context, callMethod string, endPoint string, header map[string]string, body []byte) (*http.Response, error) {
 

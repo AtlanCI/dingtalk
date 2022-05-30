@@ -21,17 +21,17 @@ func InitDingTalk(tokens []string, key string) *DingTalk {
 	}
 	return &DingTalk{
 		robotToken: tokens,
-		keyWord: key,
+		keyWord:    key,
 	}
 }
 
 func InitDingTalkWithSecret(tokens string, secret string) *DingTalk {
-	if len(tokens) == 0 || secret==""{
+	if len(tokens) == 0 || secret == "" {
 		panic("no token")
 	}
 	return &DingTalk{
 		robotToken: []string{tokens},
-		secret: secret,
+		secret:     secret,
 	}
 }
 
@@ -43,12 +43,12 @@ func (d *DingTalk) sendMessage(msg iDingMsg) error {
 		resp   *http.Response
 		err    error
 	)
-	ctx, cancel = context.WithTimeout(context.Background(), time.Second*2)
+	ctx, cancel = context.WithTimeout(context.Background(), time.Second*5)
 	defer cancel()
 
 	value := url.Values{}
 	value.Set("access_token", d.robotToken[rand.Intn(len(d.robotToken))])
-	if d.secret!=""{
+	if d.secret != "" {
 		t := time.Now().UnixNano() / 1e6
 		value.Set("timestamp", fmt.Sprintf("%d", t))
 		value.Set("sign", d.sign(t, d.secret))
